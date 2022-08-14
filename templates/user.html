@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Password Manager</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <h1>Welcome {{users}}</h1>
+	Enter new password name for the site.
+  <form action="user/new" method="post">
+    <input name="text">
+    <input type="submit"> <br>
+  </form>
+  <form action='/user/Read' method="post">
+    Enter the name for the site you want to get the password from <br>
+    <input name="ReadText" id="ReadText">
+    <input type="submit" >
+  </form>
+  <form action='user/Delete' method="post">
+    Enter the name for a site you want to delete the password from <br>
+    <input name="DeleteText" id="DeleteText">
+    <input type="submit" value="Delete">
+  </form>
+  <a href="/logout">Logout</a>
+  </body>
+</html>
