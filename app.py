@@ -88,6 +88,7 @@ def NewPasswordForm():
             "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m",
             "n", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"
         ]
+        special = ["@", "#", "-"]
         numbers = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
         with open("main.json", 'r') as f:
             data = json.load(f)
@@ -96,48 +97,23 @@ def NewPasswordForm():
                 for y in x["passwords"]:
                     if y["name"] == text:
                         return f"Already a password for {text}"
-        if random.randint(1, 2) == 2:
-            stringone = random.choice(letters)
-        else:
-            stringone = random.choice(numbers)
-        if random.randint(1, 2) == 2:
-            stringtwo = random.choice(letters)
-        else:
-            stringtwo = random.choice(numbers)
-        if random.randint(1, 2) == 2:
-            stringthree = random.choice(letters)
-        else:
-            stringthree = random.choice(numbers)
-        if random.randint(1, 2) == 2:
-            stringfour = random.choice(letters)
-        else:
-            stringfour = random.choice(numbers)
-        if random.randint(1, 2) == 2:
-            stringfive = random.choice(letters)
-        else:
-            stringfive = random.choice(numbers)
-        if random.randint(1, 2) == 2:
-            stringsix = random.choice(letters)
-        else:
-            stringsix = random.choice(numbers)
-        if random.randint(1, 2) == 2:
-            stringseven = random.choice(letters)
-        else:
-            stringseven = random.choice(numbers)
-        if random.randint(1, 2) == 2:
-            stringeight = random.choice(letters)
-        else:
-            stringeight = random.choice(numbers)
-        if random.randint(1, 2) == 2:
-            stringnine = random.choice(letters)
-        else:
-            stringnine = random.choice(numbers)
-        if random.randint(1, 2) == 2:
-            stringten = random.choice(letters)
-        else:
-            stringten = random.choice(numbers)
+        passwordlist = []
+        specialcharacters = 0
+        for x in range(15):
+            if random.randint(1,5) == 1 and specialcharacters <= 2:
+                specialcharacters += 1
+                character = random.choice(special)
+                passwordlist.append(character)
+            elif random.randint(1,2) == 1:
+                character = random.choice(letters)
+                passwordlist.append(character)
+            else:
+                character = random.choice(numbers)
+                passwordlist.append(character)
+        password = ''.join(passwordlist)
+                
+        
         userfound = False
-        password = f"{stringone}{stringtwo}{stringthree}{stringfour}{stringfive}{stringsix}{stringseven}{stringeight}{stringnine}{stringten}"
         newData = {"name": str(text.lower()), "password": str(password)}
         for x in data["users"]:
             if x["username"] == user:
