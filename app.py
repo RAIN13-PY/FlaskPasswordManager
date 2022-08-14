@@ -140,9 +140,7 @@ def NewPasswordForm():
         password = f"{stringone}{stringtwo}{stringthree}{stringfour}{stringfive}{stringsix}{stringseven}{stringeight}{stringnine}{stringten}"
         newData = {"name": str(text.lower()), "password": str(password)}
         for x in data["users"]:
-            print(x)
             if x["username"] == user:
-                print(x)
                 userfound = True
                 x["passwords"].append(newData)
         if userfound == True:
@@ -195,7 +193,7 @@ def Delete():
         with open("main.json", 'r') as f:
             data = json.load(f)
         namefound = False
-        passwords=[]
+        passwords = []
         for x in data["users"]:
             if x['username'] == user:
                 for pwdict in x['passwords']:
@@ -204,9 +202,7 @@ def Delete():
                     else:
                         namefound = True
                 x['passwords'] = passwords
-                
-        
-        
+
         if namefound == False:
             return f"There is no password to delete for {password}"
         with open("main.json", 'w') as f:
