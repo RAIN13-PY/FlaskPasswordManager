@@ -14,7 +14,7 @@ def index():
 
 
 if __name__ == "__main__":
-    app.run(host=0.0.0.0, debug=True)
+    app.run(debug=True)
 
 
 @app.route('/signup', methods=["POST"])
@@ -152,7 +152,7 @@ def NewPasswordForm():
             return f"error {user} was not found it our data base"
         return f"Your password for {text} is {password}"
     else:
-        return render_template("user.html")
+        return redirect(url_for("user", users=user))
 
 
 @app.route('/user/Read', methods=['GET', 'POST'])
@@ -178,9 +178,9 @@ def Read():
         if textfound == False:
             return "name for password not found"
         if text == "":
-            render_template("user.html")
+            return redirect(url_for("user", users=user))
     else:
-        return render_template("user.html")
+        return redirect(url_for("user", users=user))
 
 
 @app.route('/user/Delete', methods=['Get', 'Post'])
@@ -211,7 +211,7 @@ def Delete():
             return f"There is no password to delete for {password}"
         with open("main.json", 'w') as f:
             json.dump(data, f, indent=1)
-        return render_template("user.html")
+        return redirect(url_for("user", users=user))
 
     else:
         return render_template("user.html")
