@@ -81,6 +81,7 @@ def NewPasswordForm():
         else:
             return render_template("index.html")
         text = request.form.get("text")
+        specialCharsConfig = request.form.get("specialschars")
         text = text.lower()
         if text == "":
             return "Enter a valid Password"
@@ -100,16 +101,24 @@ def NewPasswordForm():
         passwordlist = []
         specialcharacters = 0
         for x in range(15):
-            if random.randint(1,5) == 1 and specialcharacters <= 2:
-                specialcharacters += 1
-                character = random.choice(special)
-                passwordlist.append(character)
-            elif random.randint(1,2) == 1:
-                character = random.choice(letters)
-                passwordlist.append(character)
+            if specialCharsConfig == "on":
+                if random.randint(1,5) == 1 and specialcharacters <= 2:
+                    specialcharacters += 1
+                    character = random.choice(special)
+                    passwordlist.append(character)
+                elif random.randint(1,2) == 1:
+                    character = random.choice(letters)
+                    passwordlist.append(character)
+                else:
+                    character = random.choice(numbers)
+                    passwordlist.append(character)
             else:
-                character = random.choice(numbers)
-                passwordlist.append(character)
+                if random.randint(1,2) == 1:
+                    character = random.choice(letters)
+                    passwordlist.append(character)
+                else:
+                    character = random.choice(numbers)
+                    passwordlist.append(character)
         password = ''.join(passwordlist)
                 
         
