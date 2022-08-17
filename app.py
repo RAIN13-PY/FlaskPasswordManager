@@ -114,8 +114,12 @@ def NewPasswordForm():
                     passwordlist.append(character)
             else:
                 if random.randint(1,2) == 1:
-                    character = random.choice(letters)
-                    passwordlist.append(character)
+                    if random.randit(1,2) == 1:
+                        character = random.choice(letters.upper())
+                        passwordlist.append(character)
+                    else:
+                        character = random.choice(letters)
+                        passwordlist.append(character)
                 else:
                     character = random.choice(numbers)
                     passwordlist.append(character)
